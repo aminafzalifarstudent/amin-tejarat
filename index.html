@@ -155,7 +155,23 @@ function bindImport(kind) {
       showToast('برای فایل Excel به اینترنت نیاز است؛ ورود CSV/TXT همچنان کار می‌کند.');
       return;
     }
-    if (rows.length && heads.includes(String(rows[0][0]).trim())) rows.shift();
+    {
+      const norm = x => String(x ?? '').replace(/[\u200c\s]/g,'');
+      const alias = {'مبلغوام':'مبلغشرایط','تاریخشروعقسط':'شروعقسط','تاریخشروع':'شروعقسط','قیمتخرید':'قیمتخرید'};
+      const key = x => { const k = norm(x); return alias[k] || k; };
+      const want = (kind === 'cash' ? cashHeads : instHeads).filter(h => h !== 'ردیف');
+      const hi = rows.findIndex(r => r && r.some(c => key(c) === key('نام خریدار')));
+      if (hi >= 0 && hi < 5) {
+        const hdr = rows[hi].map(key);
+        const idx = want.map(h => hdr.indexOf(key(h)));
+        if (idx.every(i => i >= 0)) {
+          rows = rows.slice(hi + 1).map(r => idx.map(i => r[i]));
+          kind !== 'cash' && (rows = rows.map(r => ['', ...r]));
+        } else rows = rows.slice(hi + 1);
+      } else if (kind === 'cash' && rows.length && rows[0].length > 6 && /^\d+$/.test(digits(String(rows[0][0]).trim()))) {
+        rows = rows.map(r => r.slice(1));
+      }
+    }
     const parsed = [], bad = [];
     rows.forEach((raw, index) => {
       try {
