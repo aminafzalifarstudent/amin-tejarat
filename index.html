@@ -16,7 +16,7 @@
 </style></head>
 <body><aside class="sidebar"><div class="brand"><div class="brandmark">▤</div><div><b>امین‌تجارت</b><small>مدیریت خرید و فروش سیم‌کارت</small></div></div><div class="nav-title">منوی اصلی</div><nav class="nav"><button class="active" data-goto="cash"><span class="ico">▣</span> فروش نقد</button><button data-goto="installment"><span class="ico">◷</span> فروش اقساطی</button><button data-goto="reports"><span class="ico">▥</span> گزارش‌ها</button></nav><div class="side-foot">اطلاعات شما فقط روی همین دستگاه ذخیره می‌شود.</div></aside>
 <main class="main"><header class="topbar"><input id="globalSearch" aria-label="جست‌وجو در همه معاملات" placeholder="جست‌وجو در همه معاملات…"><div><div class="eyebrow">داشبورد معاملات</div><h1>مدیریت خرید و فروش سیم‌کارت</h1><p>نمای کلی سود و معاملات ثبت‌شده شما</p></div><div class="today" id="today"></div></header>
-<div class="stats"><article class="stat"><div class="stat-head"><span class="stat-icon">▤</span>مجموع معاملات</div><strong id="statCount">۰ <small>معامله</small></strong></article><article class="stat"><div class="stat-head"><span class="stat-icon">↗</span>مجموع سود خالص</div><strong id="statProfit">۰ <small>تومان</small></strong></article></div>
+<div class="stats"><article class="stat"><div class="stat-head"><span class="stat-icon">▤</span>مجموع معاملات</div><strong id="statCount">۰ <small>معامله</small></strong></article><article class="stat"><div class="stat-head"><span class="stat-icon">↗</span>سود نقدی</div><strong id="statCashProfit">۰ <small>تومان</small></strong></article><article class="stat"><div class="stat-head"><span class="stat-icon">↗</span>سود اقساطی</div><strong id="statInstProfit">۰ <small>تومان</small></strong></article><article class="stat"><div class="stat-head"><span class="stat-icon">∑</span>مجموع سود خالص</div><strong id="statProfit">۰ <small>تومان</small></strong></article></div>
 <div class="tabs"><button class="active" data-tab="cash">نقد</button><button data-tab="installment">اقساطی</button><button data-tab="reports">گزارش‌ها</button></div><section id="searchResults" class="panel" hidden></section>
 <section class="section active" id="cash"><div class="panel"><div class="panel-head"><div><h2>ثبت فروش نقدی</h2><p>اطلاعات خرید و فروش سیم‌کارت را وارد کنید.</p></div></div><form id="cashForm" class="form-grid" autocomplete="off"><div class="field"><label for="c-buyer">نام خریدار</label><input id="c-buyer" required maxlength="100" placeholder="نام و نام خانوادگی"></div><div class="field"><label for="c-desc">شرح سیم‌کارت</label><input id="c-desc" required maxlength="100" placeholder="مثلاً همراه اول دائمی"></div><div class="field"><label for="c-buydate">تاریخ خرید (شمسی)</label><div class="dateparts" data-date="c-buydate"><input aria-label="روز" class="day" type="number" min="1" max="31" placeholder="روز" required><input aria-label="ماه (عدد ۱ تا ۱۲)" class="month" type="number" min="1" max="12" inputmode="numeric" placeholder="ماه" required><input aria-label="سال شمسی" class="year" inputmode="numeric" maxlength="4" placeholder="سال" required></div><input id="c-buydate" class="date-value" type="hidden"><div class="hint">سال/ماه/روز</div></div><div class="field"><label for="c-buy">قیمت خرید (تومان)</label><input id="c-buy" required type="text" inputmode="numeric" autocomplete="off" data-money placeholder="مثلاً 12,000,000"></div><div class="field"><label for="c-saledate">تاریخ فروش (شمسی)</label><div class="dateparts" data-date="c-saledate"><input aria-label="روز" class="day" type="number" min="1" max="31" placeholder="روز" required><input aria-label="ماه (عدد ۱ تا ۱۲)" class="month" type="number" min="1" max="12" inputmode="numeric" placeholder="ماه" required><input aria-label="سال شمسی" class="year" inputmode="numeric" maxlength="4" placeholder="سال" required></div><input id="c-saledate" class="date-value" type="hidden"></div><div class="field"><label for="c-sale">قیمت فروش (تومان)</label><input id="c-sale" required type="text" inputmode="numeric" autocomplete="off" data-money placeholder="مثلاً 14,500,000"></div><div class="calc-preview"><span>سود نقدی: <b id="c-preview-profit">—</b></span><span>درصد سود: <b id="c-preview-rate">—</b></span><span>مدت نگهداری: <b id="c-preview-days">—</b></span><span>میانگین سود ماهانه: <b id="c-preview-month">—</b></span></div><div class="form-actions"><button class="btn primary" type="submit">＋ ثبت فروش نقدی</button></div></form><div class="notice">میانگین سود ماهانه بر مبنای ماه ۳۰ روزه محاسبه می‌شود.</div></div>
 <div class="panel"><div class="panel-head"><div><h2>فروش‌های نقدی</h2><p>فهرست خرید و فروش‌های نقدی ثبت‌شده</p></div><div class="exports"><button class="btn small" id="cashImportBtn">ورود از اکسل</button><input hidden type="file" id="cashImportFile" accept=".xlsx,.xls,.csv"><button class="btn small" id="cashTemplate">دانلود قالب اکسل</button><button class="btn small" id="cashPrint">گزارش PDF/چاپ</button><button class="btn small" id="cashExport">CSV</button><button class="btn small" id="cashXlsx">Excel</button><button class="btn small" id="cashTxt">TXT</button></div></div><div class="table-wrap"><table><thead><tr><th>ردیف</th><th>نام خریدار</th><th>شرح سیم‌کارت</th><th>تاریخ خرید</th><th>قیمت خرید</th><th>تاریخ فروش</th><th>قیمت فروش</th><th>سود نقدی</th><th>درصد سود</th><th>روز نگهداری</th><th>میانگین ماهانه</th><th>عملیات</th></tr></thead><tbody id="cashRows"></tbody><tfoot id="cashFoot"></tfoot></table></div></div></section>
@@ -64,16 +64,16 @@ $('instForm').addEventListener('submit',e=>{e.preventDefault();if(!e.target.repo
 function safe(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
 window.__v5=1;function paidCount(r){return (r.paid||[]).filter(Boolean).length}
 function render(){let cashTotal=0,instTotal=0;$('cashRows').innerHTML=data.cash.length?data.cash.map((r,ci)=>{const c=cashCalc(r);cashTotal+=c.profit;return `<tr><td>${fmt(ci+1)}</td><td>${safe(r.buyer)}</td><td>${safe(r.desc)} <span class="tag sold-cash">فروخته شد</span></td><td>${safe(r.buyDate)}</td><td>${money(r.buy)}</td><td>${safe(r.saleDate)}</td><td>${money(r.sale)}</td><td class="${c.profit>=0?'profit':'loss'}">${money(c.profit)}</td><td>${fmt(c.rate)}٪</td><td>${fmt(c.days)}</td><td>${money(c.monthly)}</td><td><button class="expand2" data-edit="cash" data-id="${safe(r.id)}">ویرایش</button> <button class="delete" data-delete="cash" data-id="${safe(r.id)}">حذف</button></td></tr>`}).join(''):'<tr><td class="empty" colspan="12"><div class="empty-state"><b>هنوز فروش نقدی ثبت نشده است</b>برای شروع، فرم ثبت فروش را تکمیل کنید.</div></td></tr>';$('cashFoot').innerHTML=data.cash.length?`<tr class="table-foot"><td colspan="7">مجموع سود نقدی</td><td>${money(cashTotal)}</td><td colspan="4"></td></tr>`:'';
-$('instRows').innerHTML=data.installment.length?data.installment.map((r,ii)=>{const c=instCalc(r),n=paidCount(r),pct=r.count?Math.round(n/r.count*100):0;instTotal+=c.profit;return `<tr><td>${fmt(ii+1)}</td><td>${safe(r.buyer)}</td><td>${safe(r.desc)} <span class="tag sold-inst">فروخته شد</span></td><td>${safe(r.buyDate)}</td><td>${money(r.buy)}</td><td>${safe(r.saleDate)}</td><td>${money(r.principal)}</td><td>${fmt(r.rate)}٪</td><td>${fmt(r.count)}</td><td>${money(c.each)}</td><td>${money(c.eachProfit)}</td><td class="${c.profit>=0?'profit':'loss'}">${money(c.profit)}</td><td>${dateText(c.last)}</td><td><div class="progress"><b class="profit">${fmt(n)} پرداخت‌شده</b> · <b class="loss">${fmt(r.count-n)} پرداخت‌نشده</b> <small>(از ${fmt(r.count)} قسط)</small><div class="progressbar"><i style="width:${pct}%"></i></div></div></td><td><button class="expand2" data-edit="installment" data-id="${safe(r.id)}">ویرایش</button> <button class="expand2" data-schedule="${safe(r.id)}">جزئیات</button> <button class="delete" data-delete="installment" data-id="${safe(r.id)}">حذف</button></td></tr>`}).join(''):'<tr><td class="empty" colspan="15"><div class="empty-state"><b>هنوز فروش اقساطی ثبت نشده است</b>برای شروع، فرم ثبت فروش اقساطی را تکمیل کنید.</div></td></tr>';$('instFoot').innerHTML=data.installment.length?`<tr class="table-foot"><td colspan="11">مجموع سود اقساطی</td><td>${money(instTotal)}</td><td colspan="3"></td></tr>`:'';$('statCount').innerHTML=`${fmt(data.cash.length+data.installment.length)} <small>معامله</small>`;$('statProfit').innerHTML=`${money(cashTotal+instTotal)} <small>تومان</small>`}
+$('instRows').innerHTML=data.installment.length?data.installment.map((r,ii)=>{const c=instCalc(r),n=paidCount(r),pct=r.count?Math.round(n/r.count*100):0;instTotal+=c.profit;return `<tr><td>${fmt(ii+1)}</td><td>${safe(r.buyer)}</td><td>${safe(r.desc)} <span class="tag sold-inst">فروخته شد</span></td><td>${safe(r.buyDate)}</td><td>${money(r.buy)}</td><td>${safe(r.saleDate)}</td><td>${money(r.principal)}</td><td>${fmt(r.rate)}٪</td><td>${fmt(r.count)}</td><td>${money(c.each)}</td><td>${money(c.eachProfit)}</td><td class="${c.profit>=0?'profit':'loss'}">${money(c.profit)}</td><td>${dateText(c.last)}</td><td><div class="progress"><b class="profit">${fmt(n)} پرداخت‌شده</b> · <b class="loss">${fmt(r.count-n)} پرداخت‌نشده</b> <small>(از ${fmt(r.count)} قسط)</small><div class="progressbar"><i style="width:${pct}%"></i></div></div></td><td><button class="expand2" data-edit="installment" data-id="${safe(r.id)}">ویرایش</button> <button class="expand2" data-schedule="${safe(r.id)}">جزئیات</button> <button class="delete" data-delete="installment" data-id="${safe(r.id)}">حذف</button></td></tr>`}).join(''):'<tr><td class="empty" colspan="15"><div class="empty-state"><b>هنوز فروش اقساطی ثبت نشده است</b>برای شروع، فرم ثبت فروش اقساطی را تکمیل کنید.</div></td></tr>';$('instFoot').innerHTML=data.installment.length?`<tr class="table-foot"><td colspan="11">مجموع سود اقساطی</td><td>${money(instTotal)}</td><td colspan="3"></td></tr>`:'';$('statCount').innerHTML=`${fmt(data.cash.length+data.installment.length)} <small>معامله</small>`;$('statCashProfit').innerHTML=`${money(cashTotal)} <small>تومان</small>`;$('statInstProfit').innerHTML=`${money(instTotal)} <small>تومان</small>`;$('statProfit').innerHTML=`${money(cashTotal+instTotal)} <small>تومان</small>`}
 let editInfo=null;
 function put(kind,r){if(editInfo&&editInfo.kind===kind){const k=data[kind].findIndex(x=>x.id===editInfo.id);if(k>=0){r.id=editInfo.id;if(kind==='installment')r.paid=(data[kind][k].paid||[]).slice(0,r.count);data[kind][k]=r;editInfo=null;setEditUI(kind,false);return}}data[kind].unshift(r)}
 function setEditUI(kind,on){const f=$(kind==='cash'?'cashForm':'instForm'),b=f.querySelector('button[type=submit]');if(!b.dataset.t)b.dataset.t=b.textContent;b.textContent=on?'✓ ذخیره تغییرات':b.dataset.t;let c=f.querySelector('.cancel-edit');if(on&&!c){c=document.createElement('button');c.type='button';c.className='btn cancel-edit';c.textContent='انصراف';c.onclick=()=>{editInfo=null;setEditUI(kind,false);f.reset();(kind==='cash'?updateCashPreview:updateInstPreview)()};b.after(c)}if(!on&&c)c.remove()}
 function fv(id,v){const el=$(id);el.value=v;el.dispatchEvent(new Event('input',{bubbles:true}))}
 function startEdit(kind,id){const r=data[kind].find(x=>x.id===id);if(!r)return;if(editInfo)setEditUI(editInfo.kind,false);editInfo={kind,id};activate(kind==='cash'?'cash':'installment');const P=kind==='cash'?'c':'i';fv(P+'-buyer',r.buyer||'');fv(P+'-desc',r.desc||'');setDateVal(P+'-buydate',parseJ(r.buyDate));fv(P+'-buy',String(r.buy));if(kind==='cash'){setDateVal('c-saledate',parseJ(r.saleDate));fv('c-sale',String(r.sale))}else{setDateVal('i-saledate',parseJ(r.saleDate));fv('i-principal',String(r.principal));fv('i-rate',String(r.rate));fv('i-count',String(r.count));setDateVal('i-first',r.first)}setEditUI(kind,true);(kind==='cash'?updateCashPreview:updateInstPreview)();$(kind==='cash'?'cashForm':'instForm').scrollIntoView({behavior:'smooth',block:'start'});showToast('در حال ویرایش؛ پس از اصلاح «ذخیره تغییرات» را بزنید.')}
 document.addEventListener('click',e=>{const ed=e.target.closest('[data-edit]');if(ed){startEdit(ed.dataset.edit,ed.dataset.id);return}const toggle=e.target.closest('[data-paid]');if(toggle){const r=data.installment.find(x=>x.id===toggle.dataset.id);r.paid=r.paid||[];r.paid[+toggle.dataset.paid]=!r.paid[+toggle.dataset.paid];persist();const b=document.querySelector(`[data-schedule="${CSS.escape(r.id)}"]`);if(b)b.click();return}const del=e.target.closest('[data-delete]');if(del){if(!confirm('این معامله حذف شود؟'))return;data[del.dataset.delete]=data[del.dataset.delete].filter(r=>r.id!==del.dataset.id);persist();showToast('معامله حذف شد.');return}const b=e.target.closest('[data-schedule]');if(b){const tr=b.closest('tr'),next=tr.nextElementSibling;if(next?.classList.contains('subrow')){next.remove();return}const r=data.installment.find(x=>x.id===b.dataset.schedule),c=instCalc(r);let rows='';for(let i=0;i<r.count;i++){const d=addMonths(r.first,i),paid=!!(r.paid||[])[i];rows+=`<tr><td>${fmt(i+1)}</td><td>${dateText(d)}</td><td>${money(c.each)}</td><td>${money(c.eachProfit)}</td><td><button class="${paid?'paid':'unpaid'}" data-paid="${i}" data-id="${safe(r.id)}">${paid?'✓ پرداخت شد':'◷ پرداخت نشده'}</button></td></tr>`}const sub=document.createElement('tr');sub.className='subrow';const pn=paidCount(r);sub.innerHTML=`<td colspan="15"><b>برنامه بازپرداخت ${safe(r.desc)}</b> — <span class="profit">${fmt(pn)} قسط پرداخت‌شده</span> · <span class="loss">${fmt(r.count-pn)} قسط مانده</span><div class="table-wrap" style="margin-top:10px"><table class="schedule"><thead><tr><th>قسط</th><th>تاریخ سررسید</th><th>مبلغ قسط</th><th>سود قسط</th><th>وضعیت</th></tr></thead><tbody>${rows}</tbody></table></div></td>`;tr.after(sub)}});
-function rowsFor(kind){return data[kind].map((r,ri)=>{if(kind==='cash'){const c=cashCalc(r);return {'ردیف':ri+1,'نام خریدار':r.buyer||'', 'شرح سیم‌کارت':r.desc,'تاریخ خرید':r.buyDate,'قیمت خرید':r.buy,'تاریخ فروش':r.saleDate,'قیمت فروش':r.sale,'سود نقدی':c.profit,'درصد سود':c.rate,'روز نگهداری':c.days,'میانگین سود ماهانه':c.monthly}}const c=instCalc(r),o={'ردیف':ri+1,'نام خریدار':r.buyer||'','شرح سیم‌کارت':r.desc,'تاریخ خرید':r.buyDate,'قیمت خرید':r.buy,'تاریخ فروش':r.saleDate,'مبلغ وام':r.principal,'نرخ ماهانه':r.rate,'تعداد اقساط':r.count,'شروع قسط':dateText(r.first),'پایان اقساط':dateText(c.last),'مبلغ هر قسط':c.each,'سود هر قسط':c.eachProfit,'سود کل':c.profit,'اقساط پرداخت‌شده':paidCount(r),'اقساط مانده':r.count-paidCount(r)};for(let i=0;i<r.count;i++)o[`قسط ${i+1} (${dateText(addMonths(r.first,i))})`]=(r.paid||[])[i]?'پرداخت شد':'پرداخت نشده';return o})}
+function rowsFor(kind){return data[kind].map((r,ri)=>{if(kind==='cash'){const c=cashCalc(r);return {'ردیف':ri+1,'نام خریدار':r.buyer||'', 'شرح سیم‌کارت':r.desc,'تاریخ خرید':r.buyDate,'قیمت خرید':r.buy,'تاریخ فروش':r.saleDate,'قیمت فروش':r.sale,'سود نقدی':c.profit,'درصد سود':c.rate,'روز نگهداری':c.days,'میانگین سود ماهانه':c.monthly}}return {'ردیف':ri+1,'نام خریدار':r.buyer||'','شرح سیم‌کارت':r.desc,'تاریخ خرید':r.buyDate,'قیمت خرید':r.buy,'مبلغ شرایط':r.principal,'نرخ ماهانه':r.rate,'تعداد اقساط':r.count,'شروع قسط':dateText(r.first)}})}
 function download(name,blob){const a=document.createElement('a'),url=URL.createObjectURL(blob);a.href=url;a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(url),1000)}
-function csv(kind){const rows=rowsFor(kind),heads=rows.length?Object.keys(rows[0]):kind==='cash'?['نام خریدار','شرح سیم‌کارت','تاریخ خرید','قیمت خرید','تاریخ فروش','قیمت فروش','سود نقدی','درصد سود','روز نگهداری','میانگین سود ماهانه']:['نام خریدار','شرح سیم‌کارت','تاریخ خرید','قیمت خرید','تاریخ فروش','مبلغ وام','نرخ ماهانه','تعداد اقساط','شروع قسط','پایان اقساط','مبلغ هر قسط','سود هر قسط','سود کل'];const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"',lines=[heads.map(q).join(',')];rows.forEach(r=>lines.push(heads.map(h=>q(r[h])).join(',')));download(kind==='cash'?'forosh-naqd.csv':'forosh-aghsati.csv',new Blob(['\ufeff'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'}))}
+function csv(kind){const rows=rowsFor(kind),heads=rows.length?Object.keys(rows[0]):kind==='cash'?['نام خریدار','شرح سیم‌کارت','تاریخ خرید','قیمت خرید','تاریخ فروش','قیمت فروش','سود نقدی','درصد سود','روز نگهداری','میانگین سود ماهانه']:['ردیف','نام خریدار','شرح سیم‌کارت','تاریخ خرید','قیمت خرید','مبلغ شرایط','نرخ ماهانه','تعداد اقساط','شروع قسط'];const q=v=>'"'+String(v??'').replace(/"/g,'""')+'"',lines=[heads.map(q).join(',')];rows.forEach(r=>lines.push(heads.map(h=>q(r[h])).join(',')));download(kind==='cash'?'forosh-naqd.csv':'forosh-aghsati.csv',new Blob(['\ufeff'+lines.join('\r\n')],{type:'text/csv;charset=utf-8'}))}
 function txt(kind){const rows=rowsFor(kind),s=rows.length?rows.map((r,i)=>`معامله ${fmt(i+1)}\n`+Object.entries(r).map(([k,v])=>`  ${k}: ${typeof v==='number'?fmt(v):v}`).join('\n')).join('\n\n'+'─'.repeat(34)+'\n\n'):'هیچ معامله‌ای ثبت نشده است.';download(kind==='cash'?'forosh-naqd.txt':'forosh-aghsati.txt',new Blob(['گزارش '+(kind==='cash'?'فروش نقدی':'فروش اقساطی')+'\n'+'='.repeat(35)+'\n\n'+s],{type:'text/plain;charset=utf-8'}))}
 async function xlsx(kind){if(!(await loadXLSX())){showToast('کتابخانه Excel در دسترس نیست؛ اتصال اینترنت را بررسی کنید.');return}const ws=XLSX.utils.json_to_sheet(rowsFor(kind)),wb=XLSX.utils.book_new();XLSX.utils.book_append_sheet(wb,ws,kind==='cash'?'نقدی':'اقساطی');XLSX.writeFile(wb,kind==='cash'?'forosh-naqd.xlsx':'forosh-aghsati.xlsx')}
 $('cashExport').onclick=()=>csv('cash');$('cashTxt').onclick=()=>txt('cash');$('cashXlsx').onclick=()=>xlsx('cash');$('instExport').onclick=()=>csv('installment');$('instTxt').onclick=()=>txt('installment');$('instXlsx').onclick=()=>xlsx('installment');function activate(which){document.querySelectorAll('[data-tab]').forEach(b=>b.classList.toggle('active',b.dataset.tab===which));document.querySelectorAll('[data-goto]').forEach(b=>b.classList.toggle('active',b.dataset.goto===which));document.querySelectorAll('.section').forEach(s=>s.classList.toggle('active',s.id===which))}document.querySelectorAll('[data-tab]').forEach(b=>b.onclick=()=>activate(b.dataset.tab));document.querySelectorAll('[data-goto]').forEach(b=>b.onclick=()=>activate(b.dataset.goto));$('today').textContent='امین‌تجارت';initDateParts();quickFilters();$('reportYear').innerHTML='';render();report();$('today').textContent=dateText(nowJ());
@@ -85,7 +85,7 @@ function groupInputs(){document.querySelectorAll('input[type=number]').forEach(i
 function inputNum(id){return Number(digits($(id).value).replace(/,/g,''))||0} ['c-buy','c-sale','i-buy','i-principal'].forEach(id=>{const old=$(id); if(old){old.type='text';old.inputMode='numeric';old.addEventListener('input',()=>{const x=digits(old.value).replace(/[^0-9]/g,'');old.value=x?Number(x).toLocaleString('en-US'):'';})}});
 function norm(s){return digits(String(s||'').replace(/[يى]/g,'ی').replace(/ك/g,'ک')).toLowerCase()}
 function allRecords(){return [...data.cash.map(r=>({...r,kind:'cash',profit:cashCalc(r).profit})),...data.installment.map(r=>({...r,kind:'installment',profit:instCalc(r).profit}))]}
-let pendingHighlight=null;function search(){const q=norm($('globalSearch').value.trim()),box=$('searchResults');if(!q){box.hidden=true;return}const found=allRecords().filter(r=>norm([r.buyer,r.desc,r.buyDate,r.saleDate,r.buy,r.sale,r.principal,money(r.profit)].join(' ')).includes(q));box.hidden=false;box.innerHTML=`<b>${fmt(found.length)} نتیجه</b>`+(found.length?found.map(r=>`<div class="match-row"><span><span class="badge">${r.kind==='cash'?'نقد':'اقساطی'}</span> ${safe(r.buyer)} | ${safe(r.desc)} | ${safe(r.saleDate)}</span><button class="btn small go-record" data-kind="${r.kind}" data-id="${safe(r.id)}">برو به این معامله</button></div>`).join(''):'<div class="empty-state">نتیجه‌ای پیدا نشد.</div>')}
+let pendingHighlight=null;function search(){const q=norm($('globalSearch').value.trim()),box=$('searchResults');if(!q){box.hidden=true;return}const found=allRecords().filter(r=>norm([r.buyer,r.desc,r.buyDate,r.saleDate,r.buy,r.sale,r.principal,money(r.profit)].join(' ')).includes(q));box.hidden=false;box.innerHTML=`<b>${fmt(found.length)} نتیجه</b>`+(found.length?found.map((r,mi)=>`<div class="match-row"><span><span class="badge">${fmt(mi+1)}</span> <span class="badge">${r.kind==='cash'?'نقد':'اقساطی'}</span> ${safe(r.buyer)} | ${safe(r.desc)} | ${safe(r.saleDate)}</span><button class="btn small go-record" data-kind="${r.kind}" data-id="${safe(r.id)}">برو به این معامله</button></div>`).join(''):'<div class="empty-state">نتیجه‌ای پیدا نشد.</div>')}
 let timer;$('globalSearch').addEventListener('input',()=>{clearTimeout(timer);timer=setTimeout(search,150)});
 document.addEventListener('click',e=>{const go=e.target.closest('.go-record');if(go){activate(go.dataset.kind);setTimeout(()=>{const row=[...document.querySelectorAll('#'+(go.dataset.kind==='cash'?'cashRows':'instRows')+' tr')].find(x=>x.innerHTML.includes(`data-id="${CSS.escape(go.dataset.id)}"`));if(row){row.classList.add('highlight');row.scrollIntoView({behavior:'smooth',block:'center'});setTimeout(()=>row.classList.remove('highlight'),2200)}},100)}});
 function quickFilters(){[['cashRows','cashFilter'],['instRows','instFilter']].forEach(([rows,id])=>{const panel=$(rows).closest('.panel');const h=panel.querySelector('.panel-head');if(!$(id)){const inp=document.createElement('input');inp.id=id;inp.placeholder='فیلتر این جدول…';inp.setAttribute('aria-label',inp.placeholder);h.append(inp);inp.oninput=()=>[...$(rows).rows].forEach(tr=>tr.style.display=norm(tr.textContent).includes(norm(inp.value))?'':'none')}})}
@@ -99,8 +99,31 @@ function activate(which){document.querySelectorAll('[data-tab]').forEach(b=>b.cl
 
 
 
-const cashHeads=['نام خریدار','شرح سیم‌کارت','تاریخ خرید','قیمت خرید','تاریخ فروش','قیمت فروش'];const instHeads=['نام خریدار','شرح سیم‌کارت','تاریخ خرید','قیمت خرید','تاریخ فروش','مبلغ وام','نرخ ماهانه','تعداد اقساط','تاریخ شروع قسط'];
+const cashHeads=['نام خریدار','شرح سیم‌کارت','تاریخ خرید','قیمت خرید','تاریخ فروش','قیمت فروش'];const instHeads=['ردیف','نام خریدار','شرح سیم‌کارت','تاریخ خرید','قیمت خرید','مبلغ شرایط','نرخ ماهانه','تعداد اقساط','شروع قسط'];
 function csvParse(text){text=text.replace(/^\uFEFF/,'');let out=[],row=[],v='',q=false;for(let i=0;i<text.length;i++){let c=text[i];if(c==='"'&&q&&text[i+1]==='"'){v+='"';i++}else if(c==='"')q=!q;else if(c===','&&!q){row.push(v);v=''}else if((c==='\n'||c==='\r')&&!q){if(c==='\r'&&text[i+1]==='\n')i++;row.push(v);if(row.some(x=>x.trim()))out.push(row);row=[];v=''}else v+=c}row.push(v);if(row.some(x=>x.trim()))out.push(row);return out}
+function askDup(p, old) {
+  return new Promise(resolve => {
+    const wrap = document.createElement('div');
+    wrap.style.cssText = 'position:fixed;inset:0;background:rgba(15,23,42,.5);display:flex;align-items:center;justify-content:center;z-index:9999;padding:16px';
+    wrap.innerHTML = `<div style="background:#fff;border-radius:12px;padding:20px;max-width:420px;width:100%">
+      <h3 style="margin:0 0 10px">شماره سیم‌کارت تکراری</h3>
+      <p style="margin:0 0 6px">شماره <b>${safe(p.desc)}</b> از قبل در برنامه ثبت شده است.</p>
+      <p style="margin:0 0 14px;color:#64748b;font-size:14px">موجود: ${safe(old.buyer)} | فایل: ${safe(p.buyer)}</p>
+      <label style="display:flex;gap:6px;align-items:center;margin-bottom:14px;font-size:14px"><input type="checkbox" id="dupAll"> برای همه موارد تکراری بعدی هم همین کار انجام شود</label>
+      <div style="display:flex;gap:8px;flex-wrap:wrap;justify-content:flex-end">
+        <button class="btn small" data-a="skip">اضافه نشود</button>
+        <button class="btn small" data-a="replace">جایگزین شود</button>
+        <button class="btn small primary" data-a="add">اضافه شود</button>
+      </div></div>`;
+    document.body.appendChild(wrap);
+    wrap.querySelectorAll('[data-a]').forEach(b => b.onclick = () => {
+      const all = wrap.querySelector('#dupAll').checked;
+      wrap.remove();
+      resolve({action:b.dataset.a, all});
+    });
+  });
+}
+
 function bindImport(kind) {
   const prefix = kind === 'cash' ? 'cash' : 'inst';
   const heads = kind === 'cash' ? cashHeads : instHeads;
@@ -113,7 +136,7 @@ function bindImport(kind) {
     }
     const examples = kind === 'cash'
       ? [['علی رضایی','همراه اول دائمی','1403/08/15',12000000,'1403/09/10',14500000],['مریم احمدی','ایرانسل','1403/07/01',8000000,'1403/08/12',9500000]]
-      : [['علی رضایی','همراه اول دائمی','1403/08/15',12000000,'1403/09/10',10000000,3,12,'1403/10/10'],['مریم احمدی','ایرانسل','1403/07/01',8000000,'1403/08/12',9000000,2.5,10,'1403/09/12']];
+      : [[1,'علی رضایی','همراه اول دائمی','1403/08/15',12000000,10000000,3,12,'1403/10/10'],[2,'مریم احمدی','ایرانسل','1403/07/01',8000000,9000000,2.5,10,'1403/09/12']];
     const wb = XLSX.utils.book_new();
     XLSX.utils.book_append_sheet(wb, XLSX.utils.aoa_to_sheet([heads, ...examples]), 'قالب');
     XLSX.writeFile(wb, kind + '-template.xlsx');
@@ -134,22 +157,16 @@ function bindImport(kind) {
     }
     if (rows.length && heads.includes(String(rows[0][0]).trim())) rows.shift();
     const parsed = [], bad = [];
-    rows.forEach((row, index) => {
+    rows.forEach((raw, index) => {
       try {
-        const asDate = value => {
-          if (value instanceof Date) {
-            const g = {gy:value.getFullYear(), gm:value.getMonth()+1, gd:value.getDate()};
-            return dateText(d2j(g2d(g.gy, g.gm, g.gd)));
-          }
-          return dateText(parseJ(String(value)));
-        };
+        const row = kind === 'cash' ? raw : raw.slice(1);
         const numberValue = value => Number(digits(String(value ?? '')).replace(/,/g, ''));
         const id = () => crypto.randomUUID?.() || String(Date.now() + index);
         const buyDate = parseJ(String(row[2]));
         const record = {
           id:id(), buyer:String(row[0] || ''), desc:String(row[1] || ''),
           buyDate:dateText(buyDate), buySerial:buyDate.serial, buy:numberValue(row[3]),
-          saleDate:asDate(row[4])
+          saleDate:dateText(buyDate)
         };
         if (kind === 'cash') {
           const saleDate = parseJ(String(row[4]));
@@ -157,10 +174,10 @@ function bindImport(kind) {
           record.saleSerial = saleDate.serial;
           record.sale = numberValue(row[5]);
         } else {
-          record.principal = numberValue(row[5]);
-          record.rate = numberValue(row[6]);
-          record.count = numberValue(row[7]);
-          record.first = parseJ(String(row[8]));
+          record.principal = numberValue(row[4]);
+          record.rate = numberValue(row[5]);
+          record.count = numberValue(row[6]);
+          record.first = parseJ(String(row[7]));
           record.paid = [];
           if (!Number.isInteger(record.count) || record.count < 1 || record.count > 600) throw Error('تعداد اقساط نامعتبر');
         }
@@ -178,9 +195,28 @@ function bindImport(kind) {
     }
     const details = bad.map(item => 'ردیف ' + item.n + ': ' + item.why).join('؛ ') || 'ندارد';
     if (confirm(`${valid} ردیف معتبر آماده افزودن است. ${bad.length} ردیف نامعتبر: ${details}`)) {
-      data[kind].unshift(...parsed);
+      const keyOf = x => String(x.desc).trim();
+      const toAdd = [];
+      let bulk = null, added = 0, replaced = 0, skipped = 0;
+      for (const p of parsed) {
+        const idx = data[kind].findIndex(e => keyOf(e) === keyOf(p));
+        if (idx < 0) { toAdd.push(p); continue; }
+        let action = bulk;
+        if (!action) {
+          const res = await askDup(p, data[kind][idx]);
+          action = res.action;
+          if (res.all) bulk = action;
+        }
+        if (action === 'add') toAdd.push(p);
+        else if (action === 'replace') {
+          data[kind][idx] = {...p, id: data[kind][idx].id};
+          replaced++;
+        } else skipped++;
+      }
+      added = toAdd.length;
+      data[kind].unshift(...toAdd);
       persist();
-      showToast(`${valid} ردیف اضافه شد.`);
+      showToast(`${added} ردیف اضافه، ${replaced} جایگزین، ${skipped} نادیده گرفته شد.`);
     }
     ev.target.value = '';
   };
